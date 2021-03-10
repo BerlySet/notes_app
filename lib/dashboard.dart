@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/notes.dart';
 import 'package:notes_app/shared_pref.dart';
+import 'package:notes_app/write_notes.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -12,9 +13,9 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    notesList.add(Notes(id: "1", idp: "2", title: "Hai", dateTimeCreated: "Now"));
-    return MaterialApp(
-        home: Scaffold(
+    notesList
+        .add(Notes(id: "1", idp: "2", title: "Hai", dateTimeCreated: "Now"));
+    return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -32,7 +33,11 @@ class _DashboardState extends State<Dashboard> {
         child: (notesList.isEmpty) ? buildNoNotes() : buildListNotes(),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return WriteNotes();
+          }));
+        },
         backgroundColor: Color(0xFFF33B5F),
         label: Text("Create New",
             style: TextStyle(
@@ -40,7 +45,7 @@ class _DashboardState extends State<Dashboard> {
                 fontSize: 18,
                 fontWeight: FontWeight.bold)),
       ),
-    ));
+    );
   }
 
   Column buildNoNotes() {
