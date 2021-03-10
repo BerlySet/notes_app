@@ -1,21 +1,16 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:notes_app/signup.dart';
-import 'package:notes_app/dashboard.dart';
-import 'package:notes_app/users.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:flutter/gestures.dart';
+import 'package:notes_app/UI/login_page.dart';
 
-class LoginPage extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  TextEditingController contEmail = TextEditingController(text: "");
-  TextEditingController contPass = TextEditingController(text: "");
-  bool isLogin = false;
-  Users user;
-  
+class _SignUpState extends State<SignUp> {
+  TextEditingController contSU = TextEditingController(text: "");
+  TextEditingController contPassSU = TextEditingController(text: "");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Container(
                 margin: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                child: Text("Hello There!",
+                child: Text("Sign Up!",
                     style: TextStyle(
                         color: Colors.black,
                         fontFamily: "Roboto",
@@ -51,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onChanged: (value) {},
-                  controller: contEmail,
+                  controller: contSU,
                 ),
               ),
             ),
@@ -74,61 +69,66 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(5))),
                   obscureText: true,
                   onChanged: (value) {},
-                  controller: contPass,
+                  controller: contPassSU,
+                ),
+              ),
+            ),
+            Center(
+              child: Container(
+                margin: EdgeInsets.fromLTRB(37, 0, 37, 18),
+                child: TextField(
+                  decoration: InputDecoration(
+                      fillColor: Colors.blue[50],
+                      filled: true,
+                      labelText: "Confirm Password",
+                      prefixIcon: Icon(Icons.vpn_key),
+                      prefixStyle: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: "Roboto",
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5))),
+                  obscureText: true,
+                  onChanged: (value) {},
+                  controller: contPassSU,
                 ),
               ),
             ),
             Row(
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 40, top: 5),
+                  margin: EdgeInsets.only(left: 40, top: 5, right: 12),
                   child: RaisedButton(
                       color: Color(0xFFF33B5F),
-                      padding: EdgeInsets.fromLTRB(45, 15, 45, 15),
+                      padding: EdgeInsets.fromLTRB(70, 19, 70, 19),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      child: Text("Login",
+                      child: Text("Register",
                           style: TextStyle(
                               fontFamily: "Roboto",
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.bold)),
                       onPressed: () {
-                        setState(() {});
-                        (contEmail.text.isEmpty || contPass.text.isEmpty)
-                            ? Alert(
-                                    context: context,
-                                    title: "Failed",
-                                    image: Icon(Icons.warning),
-                                    desc: "Email or Password cannot be empty")
-                                .show()
-                            : Users.login(contEmail.text, contPass.text)
-                                .then((value) {
-                                if (value == true) {
-                                  Navigator.pushReplacement(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return Dashboard();
-                                  }));
-                                } else {
-                                  Alert(
-                                          context: context,
-                                          title: "Failed",
-                                          desc:
-                                              "Email or Password doesn't Match")
-                                      .show();
-                                }
-                              });
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) {
+                          return LoginPage();
+                        }));
                       }),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 25),
                   alignment: Alignment.centerRight,
-                  child: Text("Forgot Password?",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: "Roboto",
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800)),
+                  child: FloatingActionButton(
+                    backgroundColor: Color(0xFFF33B5F),
+                    onPressed: () {},
+                    mini: false,
+                    elevation: 0,
+                    child: Image(
+                      image: AssetImage("images/Google.png"),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("You are not a member?  ",
+                Text("Already have an account?  ",
                     style: TextStyle(
                         color: Colors.black,
                         fontFamily: "Roboto",
@@ -148,12 +148,12 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.w800)),
                 RichText(
                     text: TextSpan(
-                        text: "Register",
+                        text: "Login",
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.push(context,
+                            Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
-                              return SignUp();
+                              return LoginPage();
                             }));
                           },
                         style: TextStyle(

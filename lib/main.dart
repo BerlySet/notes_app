@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/dashboard.dart';
-import 'package:notes_app/login_page.dart';
-import 'package:notes_app/shared_pref.dart';
+import 'package:notes_app/UI/dashboard.dart';
+import 'package:notes_app/UI/login_page.dart';
+import 'package:notes_app/Model/shared_pref.dart';
 
 void main() {
     runApp(MyApp());

@@ -31,5 +31,5 @@ class Notes {
     );
   }
 
-  // static Future<List<Notes>> getNotes(string page)
+  // static Future<List<Notes>> getNotes(String page) async 
 }

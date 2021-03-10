@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:notes_app/users.dart';
+import 'package:notes_app/Model/users.dart';
 
 class TabPage extends StatefulWidget {
   @override

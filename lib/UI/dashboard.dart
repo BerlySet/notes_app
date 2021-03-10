@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/notes.dart';
-import 'package:notes_app/shared_pref.dart';
-import 'package:notes_app/write_notes.dart';
+import 'package:notes_app/Model/notes.dart';
+import 'package:notes_app/Model/shared_pref.dart';
+import 'package:notes_app/UI/write_notes.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -13,8 +13,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    notesList
-        .add(Notes(id: "1", idp: "2", title: "Hai", dateTimeCreated: "Now"));
+    // notesList
+    //     .add(Notes(id: "1", idp: "2", title: "Hai", dateTimeCreated: "Now"));
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -30,7 +30,9 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
       body: Center(
-        child: (notesList.isEmpty) ? buildNoNotes() : buildListNotes(),
+        child: (notesList.isEmpty)
+            ? buildNoNotes()
+            : ListView.builder(itemBuilder: (context, index) {}),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -81,57 +83,57 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  ListView buildListNotes() {
-    return ListView(
-      children: [
-        Container(
-          margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-          padding: EdgeInsets.all(20),
-          color: Colors.lightBlue,
-          child: Text(
-            "Hai",
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.normal,
-                fontSize: 20),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-          padding: EdgeInsets.all(20),
-          color: Colors.lightBlue,
-          child: Text(
-            "Hai",
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.normal,
-                fontSize: 20),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-          padding: EdgeInsets.all(20),
-          color: Colors.lightBlue,
-          child: Text(
-            "Hai",
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.normal,
-                fontSize: 20),
-          ),
-        ),
-        Container(
-            margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: Center(
-              child: Text(
-                "Tidak ada notes lagi",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 20),
-              ),
-            )),
-      ],
-    );
-  }
+//   ListView buildListNotes() {
+//     return ListView(
+//       children: [
+//         Container(
+//           margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+//           padding: EdgeInsets.all(20),
+//           color: Colors.lightBlue,
+//           child: Text(
+//             "Hai",
+//             style: TextStyle(
+//                 color: Colors.white,
+//                 fontWeight: FontWeight.normal,
+//                 fontSize: 20),
+//           ),
+//         ),
+//         Container(
+//           margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+//           padding: EdgeInsets.all(20),
+//           color: Colors.lightBlue,
+//           child: Text(
+//             "Hai",
+//             style: TextStyle(
+//                 color: Colors.white,
+//                 fontWeight: FontWeight.normal,
+//                 fontSize: 20),
+//           ),
+//         ),
+//         Container(
+//           margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+//           padding: EdgeInsets.all(20),
+//           color: Colors.lightBlue,
+//           child: Text(
+//             "Hai",
+//             style: TextStyle(
+//                 color: Colors.white,
+//                 fontWeight: FontWeight.normal,
+//                 fontSize: 20),
+//           ),
+//         ),
+//         Container(
+//             margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+//             child: Center(
+//               child: Text(
+//                 "Tidak ada notes lagi",
+//                 style: TextStyle(
+//                     color: Colors.black,
+//                     fontWeight: FontWeight.normal,
+//                     fontSize: 20),
+//               ),
+//             )),
+//       ],
+//     );
+//   }
 }

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:notes_app/shared_pref.dart';
+import 'package:notes_app/Model/shared_pref.dart';
 
 /// Class Users digunakan untuk menyimpan data data user (Instance) yang diambil dari database
 class Users {
