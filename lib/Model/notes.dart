@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:notes_app/Model/shared_pref.dart';
 
 /// Class ini menyimpan Objek Objek Notes tiap pengguna
 class Notes {
@@ -31,5 +33,10 @@ class Notes {
     );
   }
 
-  // static Future<List<Notes>> getNotes(String page) async 
+  static Future<List<Notes>> getNotes(String page) async {
+    String url = "http://433f0fdf7492.ngrok.io/notes_app/read_notes.php";
+
+    var result = await http.post(url, body: {'id': getID()});
+    
+  }
 }

@@ -33,7 +33,7 @@ class Users {
   // }
 
   static Future<bool> login(String email, String password) async {
-    String url = "https://a66611d5a4c4.ngrok.io/notes_app/login.php";
+    String url = "https://433f0fdf7492.ngrok.io/notes_app/login.php";
 
     var result =
         await http.post(url, body: {'email': email, 'password': password});

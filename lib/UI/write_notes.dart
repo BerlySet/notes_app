@@ -30,7 +30,7 @@ class _WriteNotesState extends State<WriteNotes> {
       ),
       body: Stack(
         children: [
-          Container(
+          Container( // Title
               margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: TextField(
                 decoration: InputDecoration(
@@ -51,7 +51,7 @@ class _WriteNotesState extends State<WriteNotes> {
                   setState(() {});
                 },
               )),
-          Container(
+          Container( // Text input
               margin: EdgeInsets.fromLTRB(20, 35, 20, 70),
               child: TextField(
                 decoration: InputDecoration(
@@ -68,7 +68,7 @@ class _WriteNotesState extends State<WriteNotes> {
                   setState(() {});
                 },
               )),
-          Container(
+          Container( // Toggle Buttons
             alignment: Alignment.bottomCenter,
             margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
             child: Container(

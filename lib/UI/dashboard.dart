@@ -13,8 +13,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    // notesList
-    //     .add(Notes(id: "1", idp: "2", title: "Hai", dateTimeCreated: "Now"));
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
