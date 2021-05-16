@@ -22,11 +22,13 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    Notes.getNotes().then((value) {
-      notes = value;
-      setState(() {});
+    getID().then((id) {
+      Notes.getNotes(id).then((value) {
+        notes = value;
+        setState(() {});
+      });
     });
-    
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

@@ -7,6 +7,8 @@ import 'package:notes_app/Model/shared_pref.dart';
 
 import 'constant.dart';
 
+// String idp = '';
+
 /// Class ini menyimpan Objek Objek Notes tiap pengguna
 class Notes {
   String id;
@@ -38,18 +40,26 @@ class Notes {
     );
   }
 
-  static Future<List<Notes>> getNotes() async {
+  // static void setID() {
+  //   getID().then((value) {
+  //     idp = value;
+  //   });
+  // }
+
+  // void readID
+
+  static Future<List<Notes>> getNotes(String idp) async {
     String url = uRL + "read_notes.php";
 
-    var result = await http.post(Uri.parse(url), body: {'id': '1'});
+    log(idp);
+    var result = await http.post(Uri.parse(url), body: {'id': idp});
     List<Notes> notesData = [];
-    
+
     if (result.body.isNotEmpty) {
       var jsonObj = json.decode(result.body);
       List<dynamic> listNotes = (jsonObj as Map<String, dynamic>)['read'];
 
-      
-      for (int i=0; i < listNotes.length; i++) {
+      for (int i = 0; i < listNotes.length; i++) {
         notesData.add(Notes.createNotes(listNotes[i]));
       }
     }
