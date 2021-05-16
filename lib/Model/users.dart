@@ -4,6 +4,8 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:notes_app/Model/shared_pref.dart';
 
+import 'constant.dart';
+
 /// Class Users digunakan untuk menyimpan data data user (Instance) yang diambil dari database
 class Users {
   /// field ini menyimpan id user
@@ -33,10 +35,10 @@ class Users {
   // }
 
   static Future<bool> login(String email, String password) async {
-    String url = "https://433f0fdf7492.ngrok.io/notes_app/login.php";
+    String url = uRL + "login.php";
 
     var result =
-        await http.post(url, body: {'email': email, 'password': password});
+        await http.post(Uri.parse(url), body: {'email': email, 'password': password});
 
     if (result.body.isNotEmpty) {
       var jsonObj = json.decode(result.body);
@@ -48,8 +50,6 @@ class Users {
         // getEmail().then((value) {
         //   log(value.toString());
         // });
-        // log(value.toString());
-
         return true;
       } else
         log("Salah password tp email bener");

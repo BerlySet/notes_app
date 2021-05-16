@@ -1,18 +1,32 @@
+import 'dart:developer';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:notes_app/Model/notes.dart';
 import 'package:notes_app/Model/shared_pref.dart';
 import 'package:notes_app/UI/write_notes.dart';
 
+List<Notes> notes = [];
+
 class Dashboard extends StatefulWidget {
+  // Dashboard() {
+  //   Notes.getNotes().then((value) {
+  //     notes = value;
+  //   });
+  // }
+
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<Notes> notesList = [];
-
   @override
   Widget build(BuildContext context) {
+    Notes.getNotes().then((value) {
+      notes = value;
+      setState(() {});
+    });
+    
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -28,9 +42,41 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
       body: Center(
-        child: (notesList.isEmpty)
+        child: (notes.length == 0)
             ? buildNoNotes()
-            : ListView.builder(itemBuilder: (context, index) {}),
+            : ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: notes.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                    padding: EdgeInsets.all(20),
+                    color: Colors.blue[100],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          notes[index].title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          notes[index].text,
+                          maxLines: 2,
+                          style: TextStyle(
+                            color: Colors.black45,
+                            fontSize: 14,
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -81,57 +127,57 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-//   ListView buildListNotes() {
-//     return ListView(
-//       children: [
-//         Container(
-//           margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-//           padding: EdgeInsets.all(20),
-//           color: Colors.lightBlue,
-//           child: Text(
-//             "Hai",
-//             style: TextStyle(
-//                 color: Colors.white,
-//                 fontWeight: FontWeight.normal,
-//                 fontSize: 20),
-//           ),
-//         ),
-//         Container(
-//           margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-//           padding: EdgeInsets.all(20),
-//           color: Colors.lightBlue,
-//           child: Text(
-//             "Hai",
-//             style: TextStyle(
-//                 color: Colors.white,
-//                 fontWeight: FontWeight.normal,
-//                 fontSize: 20),
-//           ),
-//         ),
-//         Container(
-//           margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-//           padding: EdgeInsets.all(20),
-//           color: Colors.lightBlue,
-//           child: Text(
-//             "Hai",
-//             style: TextStyle(
-//                 color: Colors.white,
-//                 fontWeight: FontWeight.normal,
-//                 fontSize: 20),
-//           ),
-//         ),
-//         Container(
-//             margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-//             child: Center(
-//               child: Text(
-//                 "Tidak ada notes lagi",
-//                 style: TextStyle(
-//                     color: Colors.black,
-//                     fontWeight: FontWeight.normal,
-//                     fontSize: 20),
-//               ),
-//             )),
-//       ],
-//     );
-//   }
+  // ListView buildListNotes() {
+  //   return ListView(
+  //     children: [
+  //       Container(
+  //         margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+  //         padding: EdgeInsets.all(20),
+  //         color: Colors.lightBlue,
+  //         child: Text(
+  //           "Hai",
+  //           style: TextStyle(
+  //               color: Colors.white,
+  //               fontWeight: FontWeight.normal,
+  //               fontSize: 20),
+  //         ),
+  //       ),
+  //       Container(
+  //         margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+  //         padding: EdgeInsets.all(20),
+  //         color: Colors.lightBlue,
+  //         child: Text(
+  //           "Hai",
+  //           style: TextStyle(
+  //               color: Colors.white,
+  //               fontWeight: FontWeight.normal,
+  //               fontSize: 20),
+  //         ),
+  //       ),
+  //       Container(
+  //         margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+  //         padding: EdgeInsets.all(20),
+  //         color: Colors.lightBlue,
+  //         child: Text(
+  //           "Hai",
+  //           style: TextStyle(
+  //               color: Colors.white,
+  //               fontWeight: FontWeight.normal,
+  //               fontSize: 20),
+  //         ),
+  //       ),
+  //       Container(
+  //           margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+  //           child: Center(
+  //             child: Text(
+  //               "Tidak ada notes lagi",
+  //               style: TextStyle(
+  //                   color: Colors.black,
+  //                   fontWeight: FontWeight.normal,
+  //                   fontSize: 20),
+  //             ),
+  //           )),
+  //     ],
+  //   );
+  // }
 }
